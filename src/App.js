@@ -2,6 +2,9 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Redirect, Route, Router, Switch } from 'react-router';
 
+// Config
+import routes from './routing/routes';
+
 // History
 import history from './config/history';
 
@@ -27,9 +30,9 @@ const App = () => (
       <PageContentContainer>
         <Router history={history}>
           <Switch>
-            <Route path="/dashboard" component={DashboardPage} />
-            <Route path="/report" component={ReportPage} />
-            <Redirect path="/" exact to="/dashboard" />
+            <Route path={routes.DASHBOARD} component={DashboardPage} />
+            <Route path={routes.REPORT} component={ReportPage} />
+            <Redirect path={routes.BASE} exact to={routes.DASHBOARD} />
           </Switch>
         </Router>
       </PageContentContainer>
