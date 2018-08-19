@@ -15,7 +15,12 @@ injectGlobal`
 
   html,
   body {
+    box-sizing: border-box;
     height: 100%;
     width: 100%;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
   }
 `;
