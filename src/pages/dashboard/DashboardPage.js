@@ -1,30 +1,19 @@
 import React from 'react';
 import _ from 'lodash';
-import { fetchAllCountries } from '../../service/http';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { loadDashboardPage } from '../../actions/pageLoadActions';
+import { getCountries } from '../../selectors/countriesSelectors';
 
 class DashboardPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      countries: []
-    }
-  }
-
   componentDidMount() {
-    fetchAllCountries().then(({ countries }) => {
-      this.setState({
-        ...this.state,
-        countries
-      })
-    }).catch(exception => {
-      console.log(exception);
-    })
+    this.props.loadDashboardPage();
   }
 
   render() {
     return (
       <div>
-        {_.map(this.state.countries, ((country, index) => (
+        {_.map(this.props.countries, ((country, index) => (
           <div key={`${country}-${index}`}>{country}</div>
         )))
         }
@@ -33,4 +22,12 @@ class DashboardPage extends React.Component {
   }
 }
 
-export default DashboardPage;
+const mapStateToProps = (state) => ({
+  countries: getCountries(state)
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  loadDashboardPage
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);
