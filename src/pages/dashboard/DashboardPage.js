@@ -9,7 +9,6 @@ import { getCountries } from '../../selectors/countriesSelectors';
 class DashboardPage extends React.Component {
   componentDidMount() {
     this.props.loadDashboardPage();
-    toastr.success('Title', 'Message');
   }
 
   render() {
