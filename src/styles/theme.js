@@ -8,6 +8,7 @@ export default {
     headerSubtitle: 200,
   },
   colors: {
-    headerBorder: '#b08b2a'
+    headerBorder: '#b08b2a',
+    primaryFontColor: '#1c1c1c',
   }
 };

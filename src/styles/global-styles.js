@@ -1,10 +1,11 @@
 import { injectGlobal } from 'styled-components';
+import { prop } from 'styled-tools';
 
 injectGlobal`
   body {
     margin: 0;
     padding: 0;
-    color: #1c1c1c;
+    color: ${prop('theme.colors.primaryFontColor')};
     font-family: FrutigerRoman, sans-serif;
   }
   
