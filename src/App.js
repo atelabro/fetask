@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Redirect, Route, Router, Switch } from 'react-router';
+import ReduxToastr from 'react-redux-toastr';
 
 // Config
 import routes from './routing/routes';
@@ -10,6 +11,7 @@ import history from './config/history';
 
 // Styles
 import './styles/global-styles';
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 
 // Theme
 import theme from './styles/theme';
@@ -36,6 +38,12 @@ const App = () => (
           </Switch>
         </Router>
       </PageContentContainer>
+      <ReduxToastr
+        timeOut={4000}
+        newestOnTop={false}
+        preventDuplicates
+        closeOnToastrClick
+      />
     </PageContainer>
   </ThemeProvider>
 );
