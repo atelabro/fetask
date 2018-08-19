@@ -11,7 +11,7 @@ class DashboardPage extends React.Component {
   }
 
   componentDidMount() {
-    fetchAllCountries().then(countries => {
+    fetchAllCountries().then(({ countries }) => {
       this.setState({
         ...this.state,
         countries
@@ -24,9 +24,10 @@ class DashboardPage extends React.Component {
   render() {
     return (
       <div>
-        {_.map(this.state.countries, (country => (
-          <div key={country}>{country} </div>
-        )))}
+        {_.map(this.state.countries, ((country, index) => (
+          <div key={`${country}-${index}`}>{country}</div>
+        )))
+        }
       </div>
     );
   }
