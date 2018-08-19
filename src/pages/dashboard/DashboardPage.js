@@ -14,7 +14,10 @@ class DashboardPage extends React.Component {
     return (
       <div>
         {_.map(this.props.countries, ((country, index) => (
-          <div key={`${country}-${index}`}>{country}</div>
+          <div key={`${country.name}-${index}`}>
+            <h2>{country.name}</h2>
+            {country.totalPopulation && (<h3>{JSON.stringify(country.totalPopulation)}</h3>)}
+          </div>
         )))
         }
       </div>
