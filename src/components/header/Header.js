@@ -7,13 +7,13 @@ const HeaderContainer = styled.header`
   padding: 20px 10px;
 `;
 
-const Header = styled.h1`
+const Title = styled.h1`
   font-size: ${prop('theme.fontSizes.headerTitle')};
   font-weight: ${prop('theme.fontWeights.headerTitle')};
 `;
 
 export default () => (
   <HeaderContainer>
-    <Header>Statistics on some basic demographics</Header>
+    <Title>Statistics on some basic demographics</Title>
   </HeaderContainer>
 );
