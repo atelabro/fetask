@@ -35,3 +35,21 @@ export const getCountriesGroupedByNameLengthChartData = state => {
 
   return chartData;
 };
+
+export const getTopFiveCountriesByPopulationChartData = (state) => {
+  const topFiveByPopulation = getTopFiveCountriesByPopulation(state);
+
+  return _.map(topFiveByPopulation, country => {
+    if (country.totalPopulation[0]) {
+      return {
+        name: country.name,
+        value: _.get(country, 'totalPopulation[0].population', 0),
+      }
+    }
+
+    return {
+      name: '',
+      value: 0,
+    };
+  });
+};

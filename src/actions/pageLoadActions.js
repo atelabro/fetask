@@ -17,6 +17,7 @@ export const loadDashboardPage = () => (dispatch) => fetchAllCountries().then(({
       console.error(exception);
     })))
     .then((countriesWithCurrentPopulation) => {
+      console.log('countries completely fetched');
       dispatch(setCountries(countriesWithCurrentPopulation));
     })
 }).catch((exception) => {

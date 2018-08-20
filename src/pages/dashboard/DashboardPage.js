@@ -6,11 +6,12 @@ import { loadDashboardPage } from '../../actions/pageLoadActions';
 import {
   getContinents,
   getCountriesGroupedByNameLengthChartData,
-  getTopFiveCountriesByPopulation
+  getTopFiveCountriesByPopulationChartData
 } from '../../selectors/countriesSelectors';
 
 import CountriesByNameLengthLineChart from '../../components/charts/CountriesByNameLenghtLineChart';
-import { DashboardPageContainer, LineChartContainer, LineChartTitle } from './styled';
+import { DashboardPageContainer, ChartContainer, ChartTitle } from './styled';
+import CountriesPieChart from '../../components/charts/CountriesPieChart';
 
 class DashboardPage extends React.Component {
   componentDidMount() {
@@ -18,14 +19,19 @@ class DashboardPage extends React.Component {
   }
 
   render() {
-    const { countriesByNameLengthChartData } = this.props;
-    console.log('by name length', this.props.countriesByNameLengthChartData);
+    const { countriesByNameLengthChartData, topFiveCountriesByPopulationChartData } = this.props;
     return (
       <DashboardPageContainer>
-        <LineChartContainer>
-          <LineChartTitle>Countries grouped by the length of their name</LineChartTitle>
-          <CountriesByNameLengthLineChart data={countriesByNameLengthChartData}/>
-        </LineChartContainer>
+        <ChartContainer>
+          <ChartTitle>Countries grouped by the length of their name</ChartTitle>
+          <CountriesByNameLengthLineChart data={countriesByNameLengthChartData} />
+        </ChartContainer>
+        <ChartContainer>
+          <ChartTitle>
+            Top 5 by current population
+          </ChartTitle>
+          <CountriesPieChart data={topFiveCountriesByPopulationChartData} />
+        </ChartContainer>
       </DashboardPageContainer>
     );
   }
@@ -33,7 +39,7 @@ class DashboardPage extends React.Component {
 
 const mapStateToProps = (state) => ({
   countriesByNameLengthChartData: getCountriesGroupedByNameLengthChartData(state),
-  topFiveCountriesByPopulation: getTopFiveCountriesByPopulation(state),
+  topFiveCountriesByPopulationChartData: getTopFiveCountriesByPopulationChartData(state),
   continents: getContinents(state),
 });
 
