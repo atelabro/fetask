@@ -7,7 +7,7 @@ export const DashboardPageContainer = styled.div`
 
 export const ChartContainer = styled.div`
   display: flex;
-  padding-bottom: 16px;
+  padding: 16px 0;
   border-bottom: 1px solid ${prop('theme.colors.dashboardArticleBorder')};
   flex-direction: row;
   justify-content: space-between;

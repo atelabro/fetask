@@ -1,6 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import theme from '../../styles/theme';
 
 const CountriesByNameLengthLineChart = ({ data }) => (
   <LineChart width={600} height={300} data={data}
@@ -14,7 +15,8 @@ const CountriesByNameLengthLineChart = ({ data }) => (
       name="Number of Countries"
       type="monotone"
       dataKey="numberOfCountries"
-      stroke="#8884d8" activeDot={{ r: 8 }}
+      stroke={theme.colors.chartsPrimary}
+      activeDot={{ r: 8 }}
     />
   </LineChart>
 );

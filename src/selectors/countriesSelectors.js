@@ -39,17 +39,25 @@ export const getCountriesGroupedByNameLengthChartData = state => {
 export const getTopFiveCountriesByPopulationChartData = (state) => {
   const topFiveByPopulation = getTopFiveCountriesByPopulation(state);
 
-  return _.map(topFiveByPopulation, country => {
-    if (country.totalPopulation[0]) {
-      return {
-        name: country.name,
-        value: _.get(country, 'totalPopulation[0].population', 0),
-      }
-    }
+  return mapCountriesToNameValueObject(topFiveByPopulation);
+};
 
+const mapCountriesToNameValueObject = (countries) => _.map(countries, country => {
+  if (country.totalPopulation[0]) {
     return {
-      name: '',
-      value: 0,
+      name: country.name,
+      value: Math.max(_.get(country, 'totalPopulation[0].population', 0), 0),
     };
-  });
+  }
+
+  return {
+    name: 'name',
+    value: 0,
+  };
+});
+
+export const getContinentsChartData = (state) => {
+  const continents = getContinents(state);
+
+  return mapCountriesToNameValueObject(continents);
 };

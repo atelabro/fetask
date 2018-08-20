@@ -29,10 +29,7 @@ const CountriesPieChart = ({ data }) => (
 );
 
 CountriesPieChart.defaultProps = {
-  data: [{
-    name: 'Aaa',
-    value: 1000
-  }]
+  data: []
 };
 
 CountriesPieChart.propTypes = {
