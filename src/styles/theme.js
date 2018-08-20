@@ -9,6 +9,7 @@ export default {
   },
   colors: {
     headerBorder: '#b08b2a',
+    dashboardArticleBorder: '#b08b2a',
     primaryFontColor: '#1c1c1c',
   }
 };
