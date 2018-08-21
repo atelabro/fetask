@@ -11,6 +11,10 @@ export default {
     headerBorder: '#b08b2a',
     dashboardArticleBorder: '#b08b2a',
     primaryFontColor: '#1c1c1c',
-    chartsPrimary: '#ebc22e'
+    chartsPrimary: '#ebc22e',
+    navbarFont: '#494949',
+    navbarUnderline: '#ebc22e',
+    navbarFontHovered: '#818181',
+    navbarUnderlineHovered: '#ffd52f',
   }
 };

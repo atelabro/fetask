@@ -27,24 +27,24 @@ import ReportPage from './pages/report/ReportPage';
 
 const App = () => (
   <ThemeProvider theme={theme}>
-    <PageContainer>
-      <Header />
-      <PageContentContainer>
-        <Router history={history}>
-          <Switch>
-            <Route path={routes.DASHBOARD} component={DashboardPage} />
-            <Route path={routes.REPORT} component={ReportPage} />
-            <Redirect path={routes.BASE} exact to={routes.DASHBOARD} />
-          </Switch>
-        </Router>
-      </PageContentContainer>
-      <ReduxToastr
-        timeOut={4000}
-        newestOnTop={false}
-        preventDuplicates
-        closeOnToastrClick
-      />
-    </PageContainer>
+    <Router history={history}>
+      <PageContainer>
+        <Header />
+        <PageContentContainer>
+            <Switch>
+              <Route path={routes.DASHBOARD} component={DashboardPage} />
+              <Route path={routes.REPORT} component={ReportPage} />
+              <Redirect path={routes.BASE} exact to={routes.DASHBOARD} />
+            </Switch>
+        </PageContentContainer>
+        <ReduxToastr
+          timeOut={4000}
+          newestOnTop={false}
+          preventDuplicates
+          closeOnToastrClick
+        />
+      </PageContainer>
+    </Router>
   </ThemeProvider>
 );
 
