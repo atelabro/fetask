@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import _ from 'lodash';
 import TableHeaderCell from './TableHeaderCell';
+import CountryTableRow from './CountryTableRow';
 
 export const ORDER = {
   ASC: 'ASC',
@@ -75,11 +76,7 @@ class CountriesTable extends React.Component {
         </thead>
         <tbody>
           {sortedCountries.map(({ country, population }, index) => (
-            <tr key={`${country}-${index}`}>
-              <td>{index}</td>
-              <td>{country}</td>
-              <td>{population}</td>
-            </tr>
+            <CountryTableRow key={`${country}-${index}`} country={country} population={population} index={index} />
           ))}
         </tbody>
       </table>
