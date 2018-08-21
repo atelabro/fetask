@@ -42,22 +42,28 @@ export const getTopFiveCountriesByPopulationChartData = (state) => {
   return mapCountriesToNameValueObject(topFiveByPopulation);
 };
 
-const mapCountriesToNameValueObject = (countries) => _.map(countries, country => {
-  if (country.totalPopulation[0]) {
-    return {
-      name: country.name,
-      value: Math.max(_.get(country, 'totalPopulation[0].population', 0), 0),
-    };
-  }
-
-  return {
-    name: 'name',
-    value: 0,
-  };
-});
+const mapCountriesToNameValueObject = (countries) => _.map(
+  filterWithPopulationOnly(countries),
+  country => ({
+    name: country.name,
+    value: Math.max(_.get(country, 'totalPopulation[0].population', 0), 0),
+  })
+);
 
 export const getContinentsChartData = (state) => {
   const continents = getContinents(state);
 
   return mapCountriesToNameValueObject(continents);
 };
+
+const filterWithPopulationOnly = (countries) => _.filter(countries, (country) => {
+  return country.totalPopulation && country.totalPopulation[0];
+});
+
+export const getCountriesWithCurrentPopulation = (state) => _.map(
+  filterWithPopulationOnly(getCountries(state)),
+  country => ({
+    country: country.name,
+    population: Math.max(_.get(country, 'totalPopulation[0].population', 0), 0),
+  })
+);

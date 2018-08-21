@@ -7,7 +7,7 @@ export const loadDashboardPage = () => (dispatch) => fetchAllCountries().then(({
   const enrichedCountries = _.map(countries, country => ({ name: country, totalPopulation: '' }));
   dispatch(setCountries(enrichedCountries));
 
-  Promise.all(countries.map(country => fetchPopulationForCountryTodayAndTomorrow(country)
+  return Promise.all(countries.map(country => fetchPopulationForCountryTodayAndTomorrow(country)
     .then(({ total_population }) => ({
       name: country,
       totalPopulation: total_population
@@ -19,8 +19,12 @@ export const loadDashboardPage = () => (dispatch) => fetchAllCountries().then(({
     .then((countriesWithCurrentPopulation) => {
       console.log('countries completely fetched');
       dispatch(setCountries(countriesWithCurrentPopulation));
+      return countriesWithCurrentPopulation;
     })
 }).catch((exception) => {
   toastr.error('An exception occurred while fetching the countries');
   console.error(exception);
 });
+
+
+export const loadReportPage = loadDashboardPage;

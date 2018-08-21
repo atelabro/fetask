@@ -14,11 +14,31 @@ import CountriesPieChart from '../../components/charts/CountriesPieChart';
 import ContinentsBarChart from '../../components/charts/ContinentsBarChart';
 
 class DashboardPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+    };
+    this.setLoading = this.setLoading.bind(this);
+  }
+  setLoading(loading) {
+    this.setState({
+      ...this.state,
+      loading
+    });
+  }
+
   componentDidMount() {
-    this.props.loadDashboardPage();
+    this.setLoading(true);
+    this.props.loadDashboardPage().then(() => this.setLoading(false));
   }
 
   render() {
+    const { loading } = this.state;
+    if (loading) {
+      return (<div>Loading...</div>);
+    }
+
     const {
       countriesByNameLengthChartData,
       topFiveCountriesByPopulationChartData,
